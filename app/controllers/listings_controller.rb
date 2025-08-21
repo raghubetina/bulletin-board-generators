@@ -26,9 +26,9 @@ class ListingsController < ApplicationController
 
     if the_listing.valid?
       the_listing.save
-      redirect_to("/listings", { :notice => "Listing created successfully." })
+      redirect_to("/boards/#{the_listing.board_id}", { :notice => "Listing created successfully." })
     else
-      redirect_to("/listings", { :alert => the_listing.errors.full_messages.to_sentence })
+      redirect_to("/boards/#{the_listing.board_id}", { :alert => the_listing.errors.full_messages.to_sentence })
     end
   end
 
