@@ -2,6 +2,9 @@
   Board #<%= @the_board.id %> details
 </h1>
 
+<%#= Listing.where({ :board_id => @the_board.id }) %>
+<%= @the_board.listings %>
+
 <article>
   <div>
     <a href="/boards">

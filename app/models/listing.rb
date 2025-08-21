@@ -11,4 +11,5 @@
 #  board_id   :integer
 #
 class Listing < ApplicationRecord
+  belongs_to :board, class_name: "Board", foreign_key: "board_id"
 end

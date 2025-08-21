@@ -9,4 +9,6 @@
 #
 class Board < ApplicationRecord
   validates :name, presence: true
+
+  has_many :listings, class_name: "Listing", foreign_key: "board_id"
 end
