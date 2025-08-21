@@ -1,69 +1,89 @@
-<h1>
-  Board #<%= @the_board.id %> details
-</h1>
+<nav aria-label="breadcrumb">
+  <ul>
+    <li><a href="/">Home</a></li>
 
-<%#= Listing.where({ :board_id => @the_board.id }) %>
-<%= @the_board.listings %>
-
-<article>
-  <div>
-    <a href="/boards">
-      Go back
-    </a>
-  </div>
-
-  <div>
-    <a href="/delete_board/<%= @the_board.id %>">
-      Delete board
-    </a>
-  </div>
-  <dl>
-    <dt>
-      Name
-    </dt>
-    <dd>
-      <%= @the_board.name %>
-    </dd>
-
-    <dt>
-      Created at
-    </dt>
-    <dd>
-      <%= time_ago_in_words(@the_board.created_at) %> ago
-    </dd>
-
-    <dt>
-      Updated at
-    </dt>
-    <dd>
-      <%= time_ago_in_words(@the_board.updated_at) %> ago
-    </dd>
-  </dl>
-</article>
-
-<hr>
-
+    <li><%= @the_board.name %></li>
+  </ul>
+</nav>
 
 <article>
   <header>
-    <h2>
-      Edit board
-    </h2>
+    Active listings
   </header>
 
-  <form action="/modify_board/<%= @the_board.id %>"  method="post" >
-    <div>
-      <label for="name_box">
-        Name
-      </label>
+  <div class="overflow-auto">
+    <table>
+      <thead>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Expires on</th>
+        <th>Posted on</th>
+      </thead>
 
-      <input type="text" id="name_box" name="query_name" value="<%= @the_board.name %>">
-    </div>
+      <% active_listings = @the_board.listings.where({ :expires_on => (Date.today...) }) %>
+      
+      <tbody>
+        <% active_listings.each do |a_listing| %>
+          <tr>
+            <td>
+              <%= a_listing.title %>
+            </td>
 
-    <button type="submit">
-      Update board
-    </button>
-  </form>
+            <td>
+              <%= a_listing.body %>
+            </td>
+
+            <td>
+              <%= a_listing.expires_on %>
+            </td>
+
+            <td>
+              <%= a_listing.created_at %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </article>
 
-<hr>
+<article>
+  <header>
+    Expired listings
+  </header>
+
+  <div class="overflow-auto">
+    <table>
+      <thead>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Expires on</th>
+        <th>Posted on</th>
+      </thead>
+
+      <% expired_listings = @the_board.listings.where({ :expires_on => (...Date.today) }) %>
+      
+      <tbody>
+        <% expired_listings.each do |a_listing| %>
+          <tr>
+            <td>
+              <%= a_listing.title %>
+            </td>
+
+            <td>
+              <%= a_listing.body %>
+            </td>
+
+            <td>
+              <%= a_listing.expires_on %>
+            </td>
+
+            <td>
+              <%= a_listing.created_at %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</article>
