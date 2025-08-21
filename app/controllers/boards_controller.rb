@@ -23,7 +23,7 @@ class BoardsController < ApplicationController
 
     if the_board.valid?
       the_board.save
-      redirect_to("/boards", { :notice => "Board created successfully." })
+      redirect_to("/boards/#{the_board.id}", { :notice => "Board created successfully." })
     else
       redirect_to("/boards", { :alert => the_board.errors.full_messages.to_sentence })
     end
