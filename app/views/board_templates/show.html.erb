@@ -34,11 +34,11 @@
             </td>
 
             <td>
-              <%= a_listing.expires_on %>
+              <%= a_listing.expires_on.strftime("%b %e, %Y") %>
             </td>
 
             <td>
-              <%= a_listing.created_at %>
+              <%= a_listing.created_at.strftime("%b %e, %Y") %>
             </td>
           </tr>
         <% end %>
@@ -75,11 +75,11 @@
             </td>
 
             <td>
-              <%= a_listing.expires_on %>
+              <%= a_listing.expires_on.strftime("%b %e, %Y") %>
             </td>
 
             <td>
-              <%= a_listing.created_at %>
+              <%= a_listing.created_at.strftime("%b %e, %Y") %>
             </td>
           </tr>
         <% end %>
